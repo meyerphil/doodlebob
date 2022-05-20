@@ -30,5 +30,31 @@ server.listen(PORT, () => {
 });
 
 
+
 /* Event + socket handling ********************************************************/
-// todoo
+
+let routes = {
+   's:connected': null
+}
+
+wss.on('connection', (ws, req) => {
+   console.log(`${req.socket.remoteAddress} connected!`);
+
+
+   let toSend = JSON.stringify({ route: 'c:user_connected', data: { id: req.socket.remoteAddress } });
+   wss.clients.forEach((client) => {
+      if (client != ws)
+         client.send(toSend);
+   });
+
+   ws.on('message', (data) => {
+      data = JSON.parse(data);
+      console.log(data.route);
+
+      routes[data.route](data.data, ws);
+   });
+
+   ws.on('close', () => {
+      console.log(`  ${req.socket.remoteAddress} disconnected!`);
+   });
+});

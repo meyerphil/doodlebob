@@ -1,1 +1,0 @@
-let ws = new WebSocket(`ws://${location.host}`);
