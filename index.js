@@ -34,7 +34,8 @@ server.listen(PORT, () => {
 /* Event + socket handling ********************************************************/
 
 let routes = {
-   's:connected': null
+   's:connected': null,
+   's:placed_tile': ws_placedTile,
 }
 
 wss.on('connection', (ws, req) => {
@@ -43,18 +44,32 @@ wss.on('connection', (ws, req) => {
 
    let toSend = JSON.stringify({ route: 'c:user_connected', data: { id: req.socket.remoteAddress } });
    wss.clients.forEach((client) => {
-      if (client != ws)
+      if (req.postback || (client != ws))
          client.send(toSend);
    });
 
    ws.on('message', (data) => {
       data = JSON.parse(data);
-      console.log(data.route);
+      //console.log(data.route);
 
-      routes[data.route](data.data, ws);
+      // todo add error response to client if route doesn't exist (maybe?)
+      routes[data.route]?.(data.data, ws);
    });
 
    ws.on('close', () => {
       console.log(`  ${req.socket.remoteAddress} disconnected!`);
    });
 });
+
+
+
+/* Socket route handlers **********************************************************/
+
+function ws_placedTile(data, sender) {
+   let toSend = JSON.stringify({ route: 'c:placed_tile', data});
+
+   wss.clients.forEach((client) => {
+      if (client != sender)
+         client.send(toSend);
+   });
+}
