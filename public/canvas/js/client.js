@@ -1,4 +1,9 @@
-let ws = new WebSocket(`ws://${location.host}`);
+let scheme = 'ws';
+
+if (location.protocol === 'https:')
+   scheme = 'wss';
+
+let ws = new WebSocket(`${scheme}://${location.host}`);
 
 const users = new Set();
 
