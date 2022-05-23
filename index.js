@@ -50,7 +50,6 @@ wss.on('connection', (ws, req) => {
 
    ws.on('message', (data) => {
       data = JSON.parse(data);
-      //console.log(data.route);
 
       // todo add error response to client if route doesn't exist (maybe?)
       routes[data.route]?.(data.data, ws);
@@ -69,7 +68,9 @@ function ws_placedTile(data, sender) {
    let toSend = JSON.stringify({ route: 'c:placed_tile', data});
 
    wss.clients.forEach((client) => {
-      if (client != sender)
+      if (client != sender) {
+         console.log('bruh');
          client.send(toSend);
+      }
    });
 }

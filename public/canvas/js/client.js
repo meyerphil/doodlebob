@@ -43,7 +43,7 @@ ws.onmessage = function(event) {
  * @param {string} route - the server-side route message should be sent to
  * @param {Object} dataObj - data object including necessary information for destination route handler 
  */
-function sendMessage(route, dataObj) {
+async function sendMessage(route, dataObj) {
    let msg = `{"route": "${route}", "data": ${JSON.stringify(dataObj)}}`;
 
    ws?.send(msg);
@@ -65,5 +65,5 @@ function ws_placedTile(data) {
    //let data = JSON.parse(event.data);
    console.log('placed tile from server');
    console.log(data);
-   addTile(data.x, data.y, true);
+   addTile(data, true);
 }
