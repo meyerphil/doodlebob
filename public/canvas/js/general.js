@@ -1,6 +1,6 @@
 function setup() {
    //sz1 = 700; // canvas size
-   sz = 20; // pixel size
+   sz = 5; // pixel size
 
    createCanvas(windowWidth, windowWidth);
    noStroke();
@@ -18,8 +18,8 @@ function randomColor() {
 
 function calculateCoords(mouseX, mouseY) {
    return {
-      x: Math.ceil((mouseX - sz) / sz) * sz,
-      y: Math.ceil((mouseY - sz) / sz) * sz,
+      x: Math.ceil((mouseX-sz*2.5) / sz) * sz,
+      y: Math.ceil((mouseY-sz*2.5) / sz) * sz,
    }
 }
 
@@ -34,7 +34,8 @@ async function addTile(coords, from_server = false) {
       fill(color(coords.color));
    }
    
-   rect(coords.x, coords.y, sz, sz);
+   //rect(coords.x, coords.y, sz*5, sz*5);
+   rect(coords.x, coords.y, sz*5, sz*5);
 }
 
 function mouseClicked() {
@@ -85,3 +86,52 @@ function mouseReleased() {
 
 
 function draw() { }
+
+
+
+let scale = 10;
+let freq  = 50
+
+let int = null;
+function haha() {
+   if (int)
+      clearInterval(int);
+
+   let colors = [
+      {
+         color: randomColor(),
+         delta: Math.round((Math.random())*scale),
+         dir: 0
+      }, 
+      {
+         color: randomColor(),
+         delta: Math.round((Math.random())*scale),
+         dir: 0
+      },
+      {
+         color: randomColor(),
+         delta: Math.round((Math.random())*scale),
+         dir: 0
+      },
+   ];
+
+   for (let i = 0; i < colors.length; i++) {
+      let sign = Math.random() < 0.5 ? -1 : 1;
+      colors[i].dir = colors[i].delta * sign;
+   }
+
+   console.log(colors);
+
+   int = setInterval(() => {
+      for (let i = 0; i < colors.length; i++) {
+         let c = colors[i];
+
+         if ((c.color >= 255-c.delta && c.dir > 0) || (c.color <= 0+c.delta && c.dir < 0))
+            colors[i].dir *= -1
+
+         colors[i].color+=colors[i].dir;
+      }
+
+      c_placed = color(colors[0].color, colors[1].color, colors[2].color, 255);
+   }, freq);
+}
