@@ -1,7 +1,5 @@
 * p5 pixel grid constraint: https://editor.p5js.org/caevrobe/sketches/BjRhAYqQ5
 
-https://meyerphil.github.io/doodlebob/public/
-
 
 ## TODO:
 ### UI:
