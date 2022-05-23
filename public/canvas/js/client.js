@@ -33,7 +33,7 @@ let routes = {
 
 ws.onmessage = function(event) {
    let msg = JSON.parse(event.data);
-   console.log('Message:', msg);
+   //console.log('Message:', msg);
 
    routes[msg.route]?.(msg.data);
 }
@@ -63,7 +63,7 @@ function userDisconnected(event) {
 
 function ws_placedTile(data) {
    //let data = JSON.parse(event.data);
-   console.log('placed tile from server');
-   console.log(data);
+   /* console.log('placed tile from server');
+   console.log(data); */
    addTile(data, true);
 }

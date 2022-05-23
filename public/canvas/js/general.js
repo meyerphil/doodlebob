@@ -1,12 +1,13 @@
 function setup() {
    //sz1 = 700; // canvas size
    sz = 5; // pixel size
+   p_scale = 4;
 
    createCanvas(windowWidth, windowWidth);
    noStroke();
    fill(0);
 
-   background(204);
+   background(0);
 
    c_placed = color(randomColor(), randomColor(), randomColor());
    c_preview = color(0, 0, 0, 127);
@@ -18,8 +19,8 @@ function randomColor() {
 
 function calculateCoords(mouseX, mouseY) {
    return {
-      x: Math.ceil((mouseX-sz*2.5) / sz) * sz,
-      y: Math.ceil((mouseY-sz*2.5) / sz) * sz,
+      x: Math.ceil((mouseX-sz*p_scale/2) / sz) * sz,
+      y: Math.ceil((mouseY-sz*p_scale/2) / sz) * sz,
    }
 }
 
@@ -35,7 +36,7 @@ async function addTile(coords, from_server = false) {
    }
    
    //rect(coords.x, coords.y, sz*5, sz*5);
-   rect(coords.x, coords.y, sz*5, sz*5);
+   rect(coords.x, coords.y, sz*p_scale, sz*p_scale);
 }
 
 function mouseClicked() {
@@ -94,7 +95,7 @@ document.addEventListener('keydown', cheatCode);
 let code = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a', 'Enter'];
 let idx = 0;
 function cheatCode(e) {
-   idx = (e.key == code[idx]) ? idx+1 : 0;
+   idx = (e.key.toUpperCase() === code[idx].toUpperCase()) ? idx+1 : 0;
 
    if (idx == code.length) {
       haha();
