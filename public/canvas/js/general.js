@@ -23,21 +23,17 @@ function calculateCoords(mouseX, mouseY) {
    }
 }
 
-let placed = {};
-let lastPlaced = {};
 async function addTile(coords, from_server = false) {
    let str = coords.x + ',' + coords.y;
 
-   let isNew = !placed.hasOwnProperty(str);
-
-   placed[str] = coords;
-
-   if (!from_server && isNew) {
+   if (!from_server) {
+      coords.color = c_placed.levels;
+      fill(c_placed);
       sendMessage('s:placed_tile', coords);
-      lastPlaced = coords;
+   } else {
+      fill(color(coords.color));
    }
-
-   fill(c_placed);
+   
    rect(coords.x, coords.y, sz, sz);
 }
 
@@ -62,7 +58,7 @@ async function mouseDragged() {
       let x = coords.x;
       let y = coords.y;
 
-      // bresenham algorithm stolen from github https://stackoverflow.com/questions/4672279/bresenham-algorithm-in-javascript
+      // bresenham algorithm stolen from https://stackoverflow.com/questions/4672279/bresenham-algorithm-in-javascript
       var dx = Math.abs(px - x);
       var dy = Math.abs(py - y);
       var sx = (x < px) ? sz : -sz;
