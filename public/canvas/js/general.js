@@ -89,6 +89,19 @@ function draw() { }
 
 
 
+document.addEventListener('keydown', cheatCode);
+
+let code = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a', 'Enter'];
+let idx = 0;
+function cheatCode(e) {
+   idx = (e.key == code[idx]) ? idx+1 : 0;
+
+   if (idx == code.length) {
+      haha();
+      document.removeEventListener('keydown', cheatCode); // arguments.callee
+   }
+}
+
 let scale = 10;
 let freq  = 50
 
@@ -97,27 +110,15 @@ function haha() {
    if (int)
       clearInterval(int);
 
-   let colors = [
-      {
-         color: randomColor(),
-         delta: Math.round((Math.random())*scale),
-         dir: 0
-      }, 
-      {
-         color: randomColor(),
-         delta: Math.round((Math.random())*scale),
-         dir: 0
-      },
-      {
-         color: randomColor(),
-         delta: Math.round((Math.random())*scale),
-         dir: 0
-      },
-   ];
+   let colors = [];
 
-   for (let i = 0; i < colors.length; i++) {
+   for (let i = 0; i < 3; i++) {
       let sign = Math.random() < 0.5 ? -1 : 1;
-      colors[i].dir = colors[i].delta * sign;
+
+      let color = randomColor();
+      let delta = Math.round((Math.random())*scale);
+      let dir = delta * sign;
+      colors.push({color: color, delta: delta, dir: dir});
    }
 
    console.log(colors);
