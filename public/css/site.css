@@ -1,0 +1,39 @@
+
+#intro {
+background-color: Burlywood;
+width: auto;
+min-height: 300px;
+padding: 80px;
+border: solid 15px #FFF8DC;
+text-align: center;
+margin:auto;
+top: 50%;
+}
+
+#intro ul li{
+  list-style: none;
+  display: inline-block;
+  margin: 0 20px;
+  position: relative;
+}
+
+#intro ul li a {
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+#intro ul li::after {
+  content: '';
+  height: 3px;
+  width: 0%;
+  background: #2F4F4F;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  transition: 0.5s;
+}
+
+#intro ul li:hover::after {
+  width: 100%;
+}
