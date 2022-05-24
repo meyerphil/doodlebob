@@ -7,7 +7,7 @@ var c_scale = 10;  // max amount of color change per interval
 var colors = null; // array used for color changing
 
 function setup() {
-   createCanvas(windowWidth, windowWidth);
+   createCanvas(windowWidth, windowHeight);
    noStroke();
    background(0);
 
