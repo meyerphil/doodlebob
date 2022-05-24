@@ -6,8 +6,6 @@ var freq  = 50     // ms interval for color changing
 var c_scale = 10;  // max amount of color change per interval 
 var colors = null; // array used for color changing
 
-
-
 function setup() {
    createCanvas(windowWidth, windowWidth);
    noStroke();
@@ -44,6 +42,18 @@ function mouseClicked() {
    let coords = calculateCoords(mouseX, mouseY);
 
    addTile(coords);
+}
+
+function windowResized() {
+   let c = createGraphics(width, height);
+   c.image(get(), 0, 0);
+
+   resizeCanvas(windowWidth, windowHeight);
+   background(0);
+
+   image(c, 0, 0);
+
+   c.remove();
 }
 
 let last = {};
@@ -85,7 +95,6 @@ async function mouseDragged() {
 function mouseReleased() {
    last = {};
 }
-
 
 function draw() { }
 

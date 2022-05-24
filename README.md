@@ -20,15 +20,20 @@ Run ```npm start``` to start the server locally.
 ## Todo:
 ### UI:
  * design home page
- * add active players window on canvas page
+ * add active players counter on canvas page
  * add second transparent canvas on top of main canvas to preview brush size
    * https://editor.p5js.org/caevrobe/sketches/OYbGZhX1t
    * pixel grid constraint: https://editor.p5js.org/caevrobe/sketches/BjRhAYqQ5
  * set canvas rendering to pixelated
  * make canvas resize to fill page when window resized without clearing it (use graphics buffer);
    * https://stackoverflow.com/questions/47694631/p5-resize-window-without-clearing-the-background
+ * override browser zoom, allow users to zoom and pan around big canvas
+   * https://stackoverflow.com/questions/69951399/p5js-clamp-image-in-pan-zoom
+   * https://www.reddit.com/r/p5js/comments/o5kuow/exporting_p5_canvas_to_a_high_quality_high/
+ * add display for # of connected users
  * change general.js p_scale based on velocity (maybe?) (would need to add p_scale to server messages)
 
 ### Server:
  * add reconnect ability to websockets on client side
  * drop dead connections
+ * load current canvas for users when they connect
