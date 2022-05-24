@@ -1,13 +1,22 @@
 
+h1{
+  position: relative;
+  color: rgb(0, 74, 98);
+  font-family: "Times ew roman", times, sans-serif;
+  font-size: 60px;
+  text-align: center;
+  top: -50px;
+ -webkit-text-stroke: 2px Darksalmon;
+}
+
 #intro {
-background-color: Burlywood;
-width: auto;
-min-height: 300px;
-padding: 80px;
-border: solid 15px #FFF8DC;
-text-align: center;
-margin:auto;
-top: 50%;
+  background-color: DarkSlateGrey;
+  width: 1440px;
+  min-height: 280px;
+  padding: 80px;
+  margin: auto;
+  border: solid 15px #F4A460;
+  text-align: center;
 }
 
 #intro ul li{
@@ -27,7 +36,7 @@ top: 50%;
   content: '';
   height: 3px;
   width: 0%;
-  background: #2F4F4F;
+  background: #fff;
   position: absolute;
   left: 0;
   bottom: -5px;
