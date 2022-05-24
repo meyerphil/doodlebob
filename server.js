@@ -43,6 +43,7 @@ wss.on('connection', (ws, req) => {
 
 
    let toSend = JSON.stringify({ route: 'c:user_connected', data: { id: req.socket.remoteAddress } });
+   console.log(`Sent to all users: ${toSend}`);
    wss.clients.forEach((client) => {
       if (req.postback || (client != ws))
          client.send(toSend);
@@ -57,6 +58,13 @@ wss.on('connection', (ws, req) => {
 
    ws.on('close', () => {
       console.log(`  ${req.socket.remoteAddress} disconnected!`);
+
+      let toSend = JSON.stringify({ route: 'c:user_disconnected', data: { id: req.socket.remoteAddress } });
+      console.log(`Sent to all users: ${toSend}`);
+      wss.clients.forEach((client) => {
+         if (req.postback || (client != ws))
+            client.send(toSend);
+      });
    });
 });
 
@@ -66,6 +74,7 @@ wss.on('connection', (ws, req) => {
 
 function ws_placedTile(data, sender) {
    let toSend = JSON.stringify({ route: 'c:placed_tile', data});
+   //console.log(`Sent to all users: ${toSend}`);
 
    wss.clients.forEach((client) => {
       if (client != sender) {

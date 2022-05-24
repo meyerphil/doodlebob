@@ -35,7 +35,7 @@ ws.onmessage = function(event) {
    let msg = JSON.parse(event.data);
    //console.log('Message:', msg);
 
-   routes[msg.route]?.(msg.data);
+   routes[msg.route]?.(msg);
 }
 
 /**
@@ -50,20 +50,18 @@ async function sendMessage(route, dataObj) {
 }
 
 function userConnected(event) {
-   let data = event.data;
 
-   console.log(`${data.id} connected!`);
+   console.log(event.data.id, 'connected!');
 }
 
 function userDisconnected(event) {
-   let data = event.data;
 
-   console.log(`  ${data.id} disconnected!`);
+   console.log(event.data.id, 'disconnected!');
 }
 
-function ws_placedTile(data) {
+function ws_placedTile(event) {
    //let data = JSON.parse(event.data);
    /* console.log('placed tile from server');
    console.log(data); */
-   addTile(data, true);
+   addTile(event.data, true);
 }
