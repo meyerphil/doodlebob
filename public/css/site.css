@@ -9,13 +9,14 @@ h1{
  -webkit-text-stroke: 2px Darksalmon;
 }
 
+
 #intro {
-  background-color: DarkSlateGrey;
-  width: 1440px;
+  background-color: black;
+  width: 1300px;
   min-height: 280px;
   padding: 80px;
   margin: auto;
-  border: solid 15px #F4A460;
+  border: solid 15px white;
   text-align: center;
 }
 
@@ -46,3 +47,36 @@ h1{
 #intro ul li:hover::after {
   width: 100%;
 }
+#title {
+  position: relative;
+  animation-name: shaketitle;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shaketitle {
+  0%   {left:0px; top:0px;}
+  25%  {left:20px; top:0px;}
+  50%  {left:20px; top:20px;}
+  75%  {left:0px; top:20px;}
+  100% {left:0px; top:0px;}
+}
+
+body {
+  background-color: red;
+  position: relative;
+  animation-name: colorchange;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes colorchange {
+    0%   {background-color:red}
+    15%  {background-color:orange}
+    30%  {background-color:lightblue}
+    45%  {background-color:blue}
+    60% {background-color:lightgreen}
+    75% {background-color:yellow}
+    90% {background-color:pink}
+    100% {background-color:red}
+  }
