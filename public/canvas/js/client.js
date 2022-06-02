@@ -41,7 +41,7 @@ ws.onmessage = function(event) {
 /**
  * Sends a message to the server
  * @param {string} route - the server-side route message should be sent to
- * @param {Object} dataObj - data object including necessary information for destination route handler 
+ * @param {Object} dataObj - data object including necessary information for destination route handler
  */
 async function sendMessage(route, dataObj) {
    let msg = `{"route": "${route}", "data": ${JSON.stringify(dataObj)}}`;

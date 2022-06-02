@@ -1,19 +1,10 @@
 
-h1{
-  position: relative;
-  color: rgb(0, 74, 98);
-  font-family: "Times ew roman", times, sans-serif;
-  font-size: 60px;
-  text-align: center;
-  top: -50px;
- -webkit-text-stroke: 2px Darksalmon;
-}
-
 
 #intro {
   background-color: black;
   width: 1300px;
-  min-height: 280px;
+  min-height: 500px;
+  max-height: 500px;
   padding: 80px;
   margin: auto;
   border: solid 15px white;
@@ -49,18 +40,11 @@ h1{
 }
 #title {
   position: relative;
-  animation-name: shaketitle;
-  animation-duration: 4s;
+  animation-name: pulse;
+  animation-duration: 5s;
   animation-iteration-count: infinite;
 }
 
-@keyframes shaketitle {
-  0%   {left:0px; top:0px;}
-  25%  {left:20px; top:0px;}
-  50%  {left:20px; top:20px;}
-  75%  {left:0px; top:20px;}
-  100% {left:0px; top:0px;}
-}
 
 body {
   background-color: red;
@@ -68,6 +52,53 @@ body {
   animation-name: colorchange;
   animation-duration: 4s;
   animation-iteration-count: infinite;
+}
+
+#start{
+  position: absolute;
+  top: 480px;
+  left: 43%;
+}
+#start:hover{
+  animation-name: shaketitle;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+#mark{
+  position:absolute;
+  top: -20px;
+  left: 11%
+
+
+}
+#marker1{
+  position:absolute;
+  top: 0px;
+  left: 10%
+
+}
+
+#marker2{
+  position:absolute;
+  top: 0px;
+  left: 80%
+}
+#marker3{
+  position:absolute;
+  top: 0px;
+  left: 90%
+}
+#marker4{
+  position:absolute;
+  top: 0px;
+  left: 20%
+}
+
+@keyframes shaketitle {
+  0%   {left:43%; top:480px;}
+  50%  {left:44%; top:480px;}
+
+  100% {left:43%; top:480px;}
 }
 
 @keyframes colorchange {
@@ -80,3 +111,20 @@ body {
     90% {background-color:pink}
     100% {background-color:red}
   }
+
+  @keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+	}
+
+	70% {
+		transform: scale(1.1);
+		box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	}
+}
