@@ -28,15 +28,21 @@ $(document).ready(function(){
 $(document).ready(function(){
   $("#start").mouseover(function(){
       //console.log("on")
-      $("#mark").height("200px").animate({top: "200px",opacity: 100});
-      $("#marker1").animate({height: "400px"});
-      $("#marker2").animate({height: "600px"});
-      $("#marker3").animate({height: "300px"});
-      $("#marker4").animate({height: "100px"});
+      $("#mark1").height("200px").animate({top: "200px",opacity: 100},2000);
+      $("#mark2").height("200px").animate({top: "400px",opacity: 100},1000);
+      $("#mark3").height("200px").animate({top: "95px",opacity: 100},3000);
+      $("#mark4").height("200px").animate({top: "450px",opacity: 100},4000);
+      $("#marker1").animate({height: "400px"},2000);
+      $("#marker2").animate({height: "600px"},1000);
+      $("#marker3").animate({height: "300px"},3000);
+      $("#marker4").animate({height: "650px"},4000);
     });
     $("#start").mouseout(function(){
           //console.log("off")
-$("#mark").animate({height: "200px", opacity: 0, top:"0px"});
+$("#mark1").animate({height: "200px", opacity: 0, top:"-200px"});
+$("#mark2").animate({height: "200px", opacity: 0, top:"-200px"});
+$("#mark3").animate({height: "200px", opacity: 0, top:"-200px"});
+$("#mark4").animate({height: "200px", opacity: 0, top:"-200px"});
     $("#marker1").animate({height: "1px"});
     $("#marker2").animate({height: "1px"});
     $("#marker3").animate({height: "1px"});
