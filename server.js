@@ -49,14 +49,9 @@ wss.on('connection', (ws, req) => {
    console.log(`${usersConnected} total user(s) connected!`);
 
 
-<<<<<<< Updated upstream
-   let toSend = JSON.stringify({ route: 'c:user_connected', data: { id: req.socket.remoteAddress } });
-   console.log(`Sent to all users: ${toSend}`);
-=======
    let toSend = JSON.stringify({ route: 'c:user_connected', data: { id: req.socket.remoteAddress, 
       totalUsers: usersConnected} });
    console.log('Sent to all users: ${toSend}')
->>>>>>> Stashed changes
    wss.clients.forEach((client) => {
       if (req.postback || (client != ws))
          client.send(toSend);
@@ -71,16 +66,11 @@ wss.on('connection', (ws, req) => {
 
    ws.on('close', () => {
       console.log(`  ${req.socket.remoteAddress} disconnected!`);
-<<<<<<< Updated upstream
-
-      let toSend = JSON.stringify({ route: 'c:user_disconnected', data: { id: req.socket.remoteAddress } });
-=======
       usersConnected--;
       console.log(`${usersConnected} total user(s) connected!`);
       
       let toSend = JSON.stringify({ route: 'c:user_disconnected', data: { id: req.socket.remoteAddress,
          totalUsers: usersConnected} });
->>>>>>> Stashed changes
       console.log(`Sent to all users: ${toSend}`);
       wss.clients.forEach((client) => {
          if (req.postback || (client != ws))
@@ -110,14 +100,9 @@ function getTiles(data, sender) {
 
 function ws_placedTile(data, sender) {
    let toSend = JSON.stringify({ route: 'c:placed_tile', data});
-<<<<<<< Updated upstream
-   //console.log(`Sent to all users: ${toSend}`);
-
-=======
    tilesPlaced.push(toSend); // store command in array
    
    //console.log("array:",tilesPlaced);
->>>>>>> Stashed changes
    wss.clients.forEach((client) => {
       if (client != sender) {
          console.log('bruh');
