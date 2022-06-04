@@ -5,6 +5,9 @@ const events = require('events');
 const { WebSocketServer } = require('ws');
 
 
+// global variable
+var usersConnected = 0;
+var tilesPlaced = []; // array that stores tiles placed
 
 
 /* Server setup *******************************************************************/
@@ -34,15 +37,26 @@ server.listen(PORT, () => {
 /* Event + socket handling ********************************************************/
 
 let routes = {
-   's:connected': null,
+   's:connected': ws_connected,
    's:placed_tile': ws_placedTile,
+   's:get_tiles': getTiles,
+   's:clear_pressed': clearTiles,
 }
 
 wss.on('connection', (ws, req) => {
    console.log(`${req.socket.remoteAddress} connected!`);
+   usersConnected++;
+   console.log(`${usersConnected} total user(s) connected!`);
 
 
+<<<<<<< Updated upstream
    let toSend = JSON.stringify({ route: 'c:user_connected', data: { id: req.socket.remoteAddress } });
+   console.log(`Sent to all users: ${toSend}`);
+=======
+   let toSend = JSON.stringify({ route: 'c:user_connected', data: { id: req.socket.remoteAddress, 
+      totalUsers: usersConnected} });
+   console.log('Sent to all users: ${toSend}')
+>>>>>>> Stashed changes
    wss.clients.forEach((client) => {
       if (req.postback || (client != ws))
          client.send(toSend);
@@ -57,20 +71,66 @@ wss.on('connection', (ws, req) => {
 
    ws.on('close', () => {
       console.log(`  ${req.socket.remoteAddress} disconnected!`);
+<<<<<<< Updated upstream
+
+      let toSend = JSON.stringify({ route: 'c:user_disconnected', data: { id: req.socket.remoteAddress } });
+=======
+      usersConnected--;
+      console.log(`${usersConnected} total user(s) connected!`);
+      
+      let toSend = JSON.stringify({ route: 'c:user_disconnected', data: { id: req.socket.remoteAddress,
+         totalUsers: usersConnected} });
+>>>>>>> Stashed changes
+      console.log(`Sent to all users: ${toSend}`);
+      wss.clients.forEach((client) => {
+         if (req.postback || (client != ws))
+            client.send(toSend);
+      });
    });
+
 });
 
 
 
 /* Socket route handlers **********************************************************/
 
+function ws_connected(data, sender) {
+   let toSend = JSON.stringify({ route: 'c:initialize', data: {
+      totalUsers: usersConnected} });
+   sender.send(toSend); // send total user count
+}
+
+function getTiles(data, sender) {
+
+   tilesPlaced.forEach((tileMessage) => { // send current board
+      sender.send(tileMessage);
+   });
+
+}
+
 function ws_placedTile(data, sender) {
    let toSend = JSON.stringify({ route: 'c:placed_tile', data});
+<<<<<<< Updated upstream
+   //console.log(`Sent to all users: ${toSend}`);
 
+=======
+   tilesPlaced.push(toSend); // store command in array
+   
+   //console.log("array:",tilesPlaced);
+>>>>>>> Stashed changes
    wss.clients.forEach((client) => {
       if (client != sender) {
          console.log('bruh');
          client.send(toSend);
       }
+   });
+}
+
+function clearTiles() {
+   console.log("clearing tiles");
+   tilesPlaced = [];
+   let toSend = JSON.stringify({ route: 'c:clear_tiles' });
+   wss.clients.forEach((client) => {
+         client.send(toSend);
    });
 }

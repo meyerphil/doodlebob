@@ -6,15 +6,29 @@ var freq  = 50     // ms interval for color changing
 var c_scale = 10;  // max amount of color change per interval 
 var colors = null; // array used for color changing
 
+// listener for clear button
+$("#clear").on("click", function(){
+   sendMessage("s:clear_pressed","");
+   console.log("clear button pressed");
+});
 function setup() {
-   createCanvas(windowWidth, windowHeight);
+   //sz1 = 700; // canvas size
+   sz = 5; // pixel size
+   p_scale = 4;
+
+   createCanvas(windowWidth, windowWidth);
    noStroke();
+   fill(0);
+
    background(0);
 
    c_placed = color(randomColor(), randomColor(), randomColor());
    c_preview = color(0, 0, 0, 127);
 }
 
+function randomColor() {
+   return Math.floor(Math.random() * 256);
+}
 
 // returns random color component from [0, 255]
 const randomColor = () => Math.floor(Math.random() * 256);
@@ -25,8 +39,15 @@ const calculateCoords = (mouseX, mouseY) => ({
    y: Math.ceil((mouseY-sz*p_scale/2) / sz) * sz
 });
 
+async function clearTiles(){
+   clear();
+   background(0);
+}
+
 
 async function addTile(coords, from_server = false) {
+   let str = coords.x + ',' + coords.y;
+
    if (!from_server) {
       coords.color = c_placed.levels;
       fill(c_placed);
@@ -35,6 +56,7 @@ async function addTile(coords, from_server = false) {
       fill(color(coords.color));
    }
    
+   //rect(coords.x, coords.y, sz*5, sz*5);
    rect(coords.x, coords.y, sz*p_scale, sz*p_scale);
 }
 
@@ -42,18 +64,6 @@ function mouseClicked() {
    let coords = calculateCoords(mouseX, mouseY);
 
    addTile(coords);
-}
-
-function windowResized() {
-   let c = createGraphics(width, height);
-   c.image(get(), 0, 0);
-
-   resizeCanvas(windowWidth, windowHeight);
-   background(0);
-
-   image(c, 0, 0);
-
-   c.remove();
 }
 
 let last = {};
@@ -96,6 +106,7 @@ function mouseReleased() {
    last = {};
 }
 
+
 function draw() { }
 
 
@@ -113,24 +124,28 @@ function cheatCode(e) {
    }
 }
 
+let scale = 10;
+let freq  = 50
 
+let int = null;
 function haha() {
-   if (intID)
-      clearInterval(intID);
-   
-   if (!colors) {
-      colors = [];
-      for (let i = 0; i < 3; i++) {
-         let sign = Math.random() < 0.5 ? -1 : 1;
-   
-         let color = randomColor();
-         let delta = Math.round((Math.random())*c_scale);
-         let dir = delta * sign;
-         colors.push({color: color, delta: delta, dir: dir});
-      }
+   if (int)
+      clearInterval(int);
+
+   let colors = [];
+
+   for (let i = 0; i < 3; i++) {
+      let sign = Math.random() < 0.5 ? -1 : 1;
+
+      let color = randomColor();
+      let delta = Math.round((Math.random())*scale);
+      let dir = delta * sign;
+      colors.push({color: color, delta: delta, dir: dir});
    }
 
-   intID = setInterval(() => {
+   console.log(colors);
+
+   int = setInterval(() => {
       for (let i = 0; i < colors.length; i++) {
          let c = colors[i];
 

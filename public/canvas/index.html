@@ -2,14 +2,22 @@
 <html>
 
 <head>
-   <script src="js/client.js"></script>
-   <script src="js/general.js" defer></script>
    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.js"></script>
+   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+   <script src="js/general.js" defer></script>
+   <script src="js/client.js"></script>
 </head>
 
 <body>
+<div id = "canvas"></div>
 
-<!-- <div id="right"></div> -->
+<div id="right">
+
+   <div id="users">
+   </div>
+   <button id = "clear">clear</button>
+</div>
+
 </body>
 
 </html>
@@ -31,7 +39,7 @@
       position: fixed;
       right: 0;
       height: 100vh;
-      background-color: red;
+      background-color: rgb(125, 187, 189);
       width: 20vw;
    }
 
