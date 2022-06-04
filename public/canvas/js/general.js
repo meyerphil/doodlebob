@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 var sz = 5;        // pixel size
 var p_scale = 3;   // visual pixel scaling factor
 
@@ -13,7 +11,6 @@ $("#clear").on("click", function(){
    sendMessage("s:clear_pressed","");
    console.log("clear button pressed");
 });
->>>>>>> Stashed changes
 function setup() {
    //sz1 = 700; // canvas size
    sz = 5; // pixel size
@@ -33,14 +30,6 @@ function randomColor() {
    return Math.floor(Math.random() * 256);
 }
 
-<<<<<<< Updated upstream
-function calculateCoords(mouseX, mouseY) {
-   return {
-      x: Math.ceil((mouseX-sz*p_scale/2) / sz) * sz,
-      y: Math.ceil((mouseY-sz*p_scale/2) / sz) * sz,
-   }
-}
-=======
 // returns random color component from [0, 255]
 const randomColor = () => Math.floor(Math.random() * 256);
 
@@ -55,7 +44,6 @@ async function clearTiles(){
    background(0);
 }
 
->>>>>>> Stashed changes
 
 async function addTile(coords, from_server = false) {
    let str = coords.x + ',' + coords.y;

@@ -54,16 +54,6 @@ async function sendMessage(route, dataObj) {
    ws?.send(msg);
 }
 
-<<<<<<< Updated upstream
-function userConnected(event) {
-
-   console.log(event.data.id, 'connected!');
-}
-
-function userDisconnected(event) {
-
-   console.log(event.data.id, 'disconnected!');
-=======
 function userConnected(data) {
 
    console.log(`${data.id} connected!`);
@@ -82,20 +72,15 @@ function userDisconnected(data) {
    console.log(`  ${data.id} disconnected!`);
    console.log(`${data.totalUsers} user(s) online!`);
    $("#users").html(`${data.totalUsers} user(s) online!`); // update user count
->>>>>>> Stashed changes
 }
 
 function ws_placedTile(event) {
    //let data = JSON.parse(event.data);
    /* console.log('placed tile from server');
    console.log(data); */
-<<<<<<< Updated upstream
-   addTile(event.data, true);
-=======
    addTile(data, true);
 }
 
 function clear(){
    clearTiles(); // from general.js
->>>>>>> Stashed changes
 }
