@@ -111,6 +111,7 @@ function ws_placedTile(data, sender) {
    });
 }
 
+
 function clearTiles() {
    console.log("clearing tiles");
    tilesPlaced = [];
