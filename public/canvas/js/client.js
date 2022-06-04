@@ -7,9 +7,12 @@ let ws = new WebSocket(`${scheme}://${location.host}`);
 
 const users = new Set();
 
+
 /* Basic websocket handling *******************************************************/
 ws.onopen = () => {
    console.log('Websocket opened...');
+   sendMessage("s:connected",""); // fetch data from server to initalize
+   sendMessage("s:get_tiles",""); // fetch existing tile data
 }
 
 ws.onerror = (err) => {
@@ -29,11 +32,13 @@ let routes = {
    'c:user_connected': userConnected,
    'c:user_disconnected': userDisconnected,
    'c:placed_tile': ws_placedTile,
+   'c:initialize': initialize,
+   'c:clear_tiles': clear,
 }
 
 ws.onmessage = function(event) {
    let msg = JSON.parse(event.data);
-   //console.log('Message:', msg);
+   console.log('Message:', msg);
 
    routes[msg.route]?.(msg);
 }
@@ -49,6 +54,7 @@ async function sendMessage(route, dataObj) {
    ws?.send(msg);
 }
 
+<<<<<<< Updated upstream
 function userConnected(event) {
 
    console.log(event.data.id, 'connected!');
@@ -57,11 +63,39 @@ function userConnected(event) {
 function userDisconnected(event) {
 
    console.log(event.data.id, 'disconnected!');
+=======
+function userConnected(data) {
+
+   console.log(`${data.id} connected!`);
+   console.log(`${data.totalUsers} user(s) online!`);
+   $("#users").html(`${data.totalUsers} user(s) online!`); // update user count
+}
+
+// when joining, run data sent from server
+function initialize(data){
+   console.log(`${data.totalUsers} user(s) online!`);
+   $("#users").html(`${data.totalUsers} user(s) online!`); // update user count
+}
+
+function userDisconnected(data) {
+
+   console.log(`  ${data.id} disconnected!`);
+   console.log(`${data.totalUsers} user(s) online!`);
+   $("#users").html(`${data.totalUsers} user(s) online!`); // update user count
+>>>>>>> Stashed changes
 }
 
 function ws_placedTile(event) {
    //let data = JSON.parse(event.data);
    /* console.log('placed tile from server');
    console.log(data); */
+<<<<<<< Updated upstream
    addTile(event.data, true);
+=======
+   addTile(data, true);
+}
+
+function clear(){
+   clearTiles(); // from general.js
+>>>>>>> Stashed changes
 }

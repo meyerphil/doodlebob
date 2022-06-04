@@ -1,3 +1,19 @@
+<<<<<<< Updated upstream
+=======
+var sz = 5;        // pixel size
+var p_scale = 3;   // visual pixel scaling factor
+
+let intID = null;  // JS interval ID
+var freq  = 50     // ms interval for color changing 
+var c_scale = 10;  // max amount of color change per interval 
+var colors = null; // array used for color changing
+
+// listener for clear button
+$("#clear").on("click", function(){
+   sendMessage("s:clear_pressed","");
+   console.log("clear button pressed");
+});
+>>>>>>> Stashed changes
 function setup() {
    //sz1 = 700; // canvas size
    sz = 5; // pixel size
@@ -17,12 +33,29 @@ function randomColor() {
    return Math.floor(Math.random() * 256);
 }
 
+<<<<<<< Updated upstream
 function calculateCoords(mouseX, mouseY) {
    return {
       x: Math.ceil((mouseX-sz*p_scale/2) / sz) * sz,
       y: Math.ceil((mouseY-sz*p_scale/2) / sz) * sz,
    }
 }
+=======
+// returns random color component from [0, 255]
+const randomColor = () => Math.floor(Math.random() * 256);
+
+// calculates mouse coordinates constrained to a grid of pixels of size
+const calculateCoords = (mouseX, mouseY) => ({
+   x: Math.ceil((mouseX-sz*p_scale/2) / sz) * sz, 
+   y: Math.ceil((mouseY-sz*p_scale/2) / sz) * sz
+});
+
+async function clearTiles(){
+   clear();
+   background(0);
+}
+
+>>>>>>> Stashed changes
 
 async function addTile(coords, from_server = false) {
    let str = coords.x + ',' + coords.y;
