@@ -66,7 +66,7 @@ body {
 }
 #mark1{
   position:absolute;
-  top: -200px;
+  top: -300px;
   left: 11%
 
 
@@ -79,15 +79,15 @@ body {
 }
 #mark2{
   position:absolute;
-  top: -200px;
-  left: 81%
+  top: -300px;
+  left: 80%
 
 
 }
 #marker2{
   position:absolute;
   top: 0px;
-  left: 80%
+  left: 79%
 }
 #marker3{
   position:absolute;
@@ -96,8 +96,8 @@ body {
 }
 #mark3{
   position:absolute;
-  top: -200px;
-  left: 70%
+  top: -300px;
+  left: 71%
 
 
 }
@@ -108,7 +108,7 @@ body {
 }
 #mark4{
   position:absolute;
-  top: -200px;
+  top: -300px;
   left: 21%
 
 

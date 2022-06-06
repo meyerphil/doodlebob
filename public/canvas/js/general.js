@@ -2,8 +2,8 @@ var sz = 5;        // pixel size
 var p_scale = 3;   // visual pixel scaling factor
 
 let intID = null;  // JS interval ID
-var freq  = 50     // ms interval for color changing 
-var c_scale = 10;  // max amount of color change per interval 
+var freq  = 50     // ms interval for color changing
+var c_scale = 10;  // max amount of color change per interval
 var colors = null; // array used for color changing
 
 // listener for clear button
@@ -26,7 +26,7 @@ const randomColor = () => Math.floor(Math.random() * 256);
 
 // calculates mouse coordinates constrained to a grid of pixels of size
 const calculateCoords = (mouseX, mouseY) => ({
-   x: Math.ceil((mouseX-sz*p_scale/2) / sz) * sz, 
+   x: Math.ceil((mouseX-sz*p_scale/2) / sz) * sz,
    y: Math.ceil((mouseY-sz*p_scale/2) / sz) * sz
 });
 
@@ -44,7 +44,7 @@ async function addTile(coords, from_server = false) {
    } else {
       fill(color(coords.color));
    }
-   
+
    rect(coords.x, coords.y, sz*p_scale, sz*p_scale);
 }
 
@@ -127,12 +127,12 @@ function cheatCode(e) {
 function haha() {
    if (intID)
       clearInterval(intID);
-   
+
    if (!colors) {
       colors = [];
       for (let i = 0; i < 3; i++) {
          let sign = Math.random() < 0.5 ? -1 : 1;
-   
+
          let color = randomColor();
          let delta = Math.round((Math.random())*c_scale);
          let dir = delta * sign;
