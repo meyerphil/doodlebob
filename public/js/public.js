@@ -18,7 +18,7 @@ var drawings = [
 $(document).ready(function(){
   $("#title").mouseover(function(){
 
-  $("#title").attr("src", "img/drawinggif.GIF").height("400px");
+  $("#title").attr("src", "img/drawinggif.gif").height("400px");
 
 
   });
