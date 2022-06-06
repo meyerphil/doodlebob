@@ -11,14 +11,14 @@
  //]
 //this changes the maintitle image from git to drawing
 var drawings = [
-  "img/doodtitle1.png",
-  "img/doodtitle2.png",
-  "img/doodtitle3.png"
+  "img/doodtitle_i.png",
+  "img/doodtitle_ii.png",
+  "img/doodtitle_iii.png"
 ]
 $(document).ready(function(){
   $("#title").mouseover(function(){
 
-  $("#title").attr("src", "img/drawinggif.gif").height("400px");
+  $("#title").attr("src", "img/drawing_gif.gif").height("400px");
 
 
   });
