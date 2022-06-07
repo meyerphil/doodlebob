@@ -6,23 +6,50 @@ var freq  = 50     // ms interval for color changing
 var c_scale = 10;  // max amount of color change per interval 
 var colors = null; // array used for color changing
 
+var username = "guest"; // store name
+
+// returns random color component from [0, 255]
+const randomColor = () => Math.floor(Math.random() * 256);
+// store RGB values of paint brush
+var colorRGB = {r:randomColor(), g:randomColor(), b:randomColor()};
+
 // listener for clear button
-$("#clear").on("click", function(){
+$("#clearButton").on("click", function(){
    sendMessage("s:clear_pressed","");
    console.log("clear button pressed");
 });
+
+// listener for prompt button
+$("#promptButton").on("click", function(){
+   sendMessage("s:prompt_request","");
+   console.log("prompt button pressed");
+});
+
+// listen to name update
+$("#updateNameButton").on("click", function(){
+   $("#nameInput").html("<input type = 'text' id = 'nameText'></input><button id='submitNameButton'>Update</button>");
+   
+   $("#submitNameButton").on("click", function(){
+      username = $("#nameText").val();
+      console.log("name:" + username);
+      $("#name").html("Your name and color: " + username);
+      $("#nameInput").html("");
+      nameColorUpdate(); // send name and color to server
+   });
+
+});
+
+
 function setup() {
    createCanvas(windowWidth, windowHeight);
    noStroke();
    background(0);
 
-   c_placed = color(randomColor(), randomColor(), randomColor());
+   c_placed = color(colorRGB.r,colorRGB.g,colorRGB.b);
    c_preview = color(0, 0, 0, 127);
+   $("#name").css("color", c_placed);
 }
 
-
-// returns random color component from [0, 255]
-const randomColor = () => Math.floor(Math.random() * 256);
 
 // calculates mouse coordinates constrained to a grid of pixels of size
 const calculateCoords = (mouseX, mouseY) => ({
@@ -55,15 +82,16 @@ function mouseClicked() {
 }
 
 function windowResized() {
-   let c = createGraphics(width, height);
-   c.image(get(), 0, 0);
+   //let c = createGraphics(width, height);
+   //c.image(get(), 0, 0);
 
    resizeCanvas(windowWidth, windowHeight);
    background(0);
 
-   image(c, 0, 0);
+   //image(c, 0, 0);
 
-   c.remove();
+   // c.remove();
+   sendMessage("s:get_tiles",""); // fetch existing tile data
 }
 
 let last = {};

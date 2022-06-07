@@ -1,0 +1,40 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+ }
+
+ * {
+    box-sizing: border-box;
+ }
+
+ #right {
+    position: fixed;
+    right: 0;
+    height: 100vh;
+    background-color: rgb(31, 53, 54);
+    width: 20vw;
+ }
+
+ #bottom {
+    position: fixed;
+    bottom:0;
+    height:100px;
+    padding-bottom: 20px;
+    background-color: rgb(125, 187, 189);
+    width: 100%;
+
+ }
+
+ #prompt {
+   display: flex;
+   justify-content: center;
+ }
+
+ /* canvas {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100%;
+    max-height: 100%;
+    image-rendering: pixelated;
+ } */
