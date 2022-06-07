@@ -40,9 +40,6 @@
 }
 #title {
   position: relative;
-  animation-name: pulse;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
 }
 
 
