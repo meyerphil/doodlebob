@@ -44,11 +44,9 @@
 
 
 body {
-  background-color: red;
+  background-color: black;
   position: relative;
-  animation-name: colorchange;
-  animation-duration: 4s;
-  animation-iteration-count: infinite;
+
 }
 
 #start{
