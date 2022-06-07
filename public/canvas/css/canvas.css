@@ -1,0 +1,117 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+ }
+
+ * {
+    box-sizing: border-box;
+ }
+
+ #right {
+    position: fixed;
+    right: 0;
+    height: 100vh;
+    background-color: rgb(31, 53, 54);
+    width: 20vw;
+    text-align: center;
+    font-size: 25px;
+    border: 2.5px solid #F4A460;
+ }
+
+ #bottom {
+    position: fixed;
+    bottom:0;
+    height:100px;
+    padding-bottom: 20px;
+    background-color: rgb(125, 187, 189);
+    width: 100%;
+    text-align:center;
+ }
+
+#updateNameButton{    background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+
+}
+
+#updateNameButton{
+  background-color: #003366;
+  color: yellow;
+  border: 2px solid #4CAF50;
+ }
+
+ #updateNameButton:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+ #prompt {
+   display: flex;
+   justify-content: center;
+ }
+
+ /* canvas {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100%;
+    max-height: 100%;
+    image-rendering: pixelated;
+ } */
+
+ #clearButton{
+    background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+ }
+
+ #clearButton {
+  background-color: #2a6592;
+  color:#db9833;
+  border: 2px solid #4CAF50;
+ }
+
+ #clearButton:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+  #promptButton {
+     background-color: #4CAF50; /* Green */
+   border: none;
+   color: white;
+   padding: 16px 32px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 16px;
+   margin: 4px 2px;
+   transition-duration: 0.4s;
+   cursor: pointer;
+  }
+
+  #promptButton {
+   background-color: white;
+   color: black;
+   border: 2px solid #4CAF50;
+  }
+
+  #promptButton:hover {
+   background-color: #4CAF50;
+   color: white;
